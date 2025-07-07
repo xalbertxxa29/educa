@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicativo de Seguridad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+     <div class="container">
+        <h1>Central de Seguridad 🛡️</h1>
+
+        <div id="mainMenu">
+            <button id="showReportFormBtn" class="action-button">🚨 Reportar Actos o Condiciones Inseguras</button>
+            <button id="showCallOptionsBtn" class="action-button">📞 Llamar a Seguridad</button>
+        </div>
+
+        <div id="reportForm" class="hidden">
+            <h2>Nuevo Reporte</h2>
+            <form id="safetyReportForm">
+                <label for="fullName">Nombre y Apellidos:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="issueType">Tipo de Incidencia:</label>
+                <select id="issueType" name="issueType" required>
+                    <option value="" disabled selected>-- Seleccione una opción --</option>
+                    <option value="intrusos">Intrusos en el campus</option>
+                    <option value="escalera">Escalera en mal estado</option>
+                    <option value="piso_resbaladizo">Pisos resbaladizos</option>
+                </select>
+
+                <label for="description">Descripción:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+
+                <input type="file" id="photoInput" accept="image/*" capture="environment" class="hidden">
+
+                <button type="button" id="takePhotoBtn" class="action-button photo-button">📸 Tomar foto de evidencia</button>
+
+                <img id="photoPreview" class="photo-preview hidden" alt="Vista previa de la evidencia">
+
+                <button type="submit" class="action-button">Enviar Reporte</button>
+            </form>
+            <button class="action-button back-button">Volver al Menú</button>
+        </div>
+
+        <div id="callOptions" class="hidden">
+            <h2>Llamar a Seguridad</h2>
+            <p>Selecciona un número para llamar inmediatamente.</p>
+            <a href="tel:+5155555555" class="call-button">Opción 1: Central (+51 555-555-555)</a>
+            <a href="tel:+5166666666" class="call-button">Opción 2: Emergencia (+51 666-666-666)</a>
+            <button class="action-button back-button">Volver al Menú</button>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="hidden">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div id="successMessage" class="hidden">
+        Reporte enviado con éxito. ¡Gracias por tu colaboración!
+        <button id="closeSuccess" onclick="document.getElementById('successMessage').classList.remove('show')">Aceptar</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
