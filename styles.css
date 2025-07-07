@@ -229,3 +229,5 @@ form button[type="submit"] {
 #successMessage button:hover {
     background-color: #f0f0f0;
 }
+
+/* ✅ SE ELIMINÓ LA LLAVE DE CIERRE EXTRA QUE CAUSABA EL ERROR */

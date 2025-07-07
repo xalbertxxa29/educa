@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ⬇️ PEGA AQUÍ LA URL DE TU APLICACIÓN WEB (NO EL ID DEL SHEET) ⬇️
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw4pWJPp6ltmMsyMcCmVXMN0y7d68RA60JOfd0RWXwYsV-1Vc_xoaLm1uDNlHBcs3vZ/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbycNxPoLm5KmtNzIBMQ_1Vu9JmNMhbCCQ7HibyN2W55xmo3bAwzMVju0ScgPbETUOKM/exec";
 
     // --- Referencias a los elementos y vistas ---
     const mainMenu = document.getElementById('mainMenu');
