@@ -1,15 +1,22 @@
 /* Estilos generales para la página */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    /* FONDO: Gradiente sutil y moderno */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* ✅ IMAGEN DE FONDO PARA TODA LA PANTALLA */
+    background-image: url('fondo.jpg'); /* Reemplaza con la URL de tu imagen PNG */
+    background-size: cover; /* Cubre todo el viewport */
+    background-repeat: no-repeat; /* No repetir la imagen */
+    background-position: center center; /* Centrar la imagen */
+    
+    /* Elimina o comenta el gradiente si solo quieres la imagen */
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+    
     margin: 0;
-    padding: 20px;
+    padding: 20px; /* Puedes ajustar el padding si es necesario */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden; /* Evita barras de desplazamiento por las animaciones */
+    overflow-x: hidden; /* Evita barras de desplazamiento */
 }
 
 /* Contenedor principal */
@@ -122,14 +129,23 @@ form button[type="submit"] {
     background-color: #5a6268;
 }
 
+/* ✅ ESTILO AÑADIDO: Estilo para el botón de quitar foto */
+.remove-button {
+    background-color: #dc3545;
+}
+.remove-button:hover {
+    background-color: #c82333;
+}
+
 /* --- ANIMACIONES PARA LAS VISTAS --- */
 .view {
     display: block; /* Usamos display block por defecto */
     animation: fadeIn 0.5s ease-out; /* Animación de entrada por defecto */
 }
 
-.view.hidden {
-    display: none; /* La clase hidden sigue ocultando el elemento */
+/* La clase hidden sigue ocultando el elemento */
+.view.hidden, .hidden {
+    display: none !important; 
 }
 
 /* Animación de entrada (aparecer) */
@@ -144,8 +160,6 @@ form button[type="submit"] {
     }
 }
 
-/* ... (resto de tus estilos) ... */
-
 /* Overlay de Cargando */
 #loadingOverlay {
     position: fixed;
@@ -154,11 +168,13 @@ form button[type="submit"] {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
-    display: flex;
+    display: none; /* Oculto por defecto */
+    flex-direction: column; /* Para poner texto debajo del spinner */
     justify-content: center;
     align-items: center;
     z-index: 1000; /* Asegura que esté por encima de todo */
-    display: none; /* Oculto por defecto */
+    color: white;
+    font-size: 1.2em;
 }
 
 .loading-spinner {
@@ -167,7 +183,8 @@ form button[type="submit"] {
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    animation: spin 2s linear infinite;
+    animation: spin 1.5s linear infinite;
+    margin-bottom: 15px; /* Espacio entre el spinner y el texto */
 }
 
 @keyframes spin {

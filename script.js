@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ⬇️ PEGA AQUÍ LA URL DE TU APLICACIÓN WEB (NO EL ID DEL SHEET) ⬇️
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjZSn7EzfosudgsSI9V3UD3y7iqNdcyJ0HbBnLGS0vJp1aLI7-4niG1nry4PcN1M_9/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw4pWJPp6ltmMsyMcCmVXMN0y7d68RA60JOfd0RWXwYsV-1Vc_xoaLm1uDNlHBcs3vZ/exec";
 
     // --- Referencias a los elementos y vistas ---
     const mainMenu = document.getElementById('mainMenu');
@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const photoPreview = document.getElementById('photoPreview');
     const showReportFormBtn = document.getElementById('showReportFormBtn');
     const showCallOptionsBtn = document.getElementById('showCallOptionsBtn');
-    
-    // ✅ LÍNEA CORREGIDA: Se añadió la declaración de backButtons que faltaba
     const backButtons = document.querySelectorAll('.back-button');
+    // ✅ Se añade la referencia al botón que faltaba
+    const removePhotoBtn = document.getElementById('removePhotoBtn'); 
 
     // --- Configuración inicial de las vistas ---
     mainMenu.classList.add('view');
@@ -25,10 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
     callOptions.classList.add('view', 'hidden');
 
     // --- Funciones de UI ---
+    // ✅ Se actualiza la función para resetear también los botones de la foto
     const resetReportForm = () => {
         safetyReportForm.reset();
+        photoInput.value = ""; // Limpia el input de la foto
         photoPreview.src = '';
         photoPreview.classList.add('hidden');
+        removePhotoBtn.classList.add('hidden'); // Oculta el botón de quitar
+        takePhotoBtn.classList.remove('hidden'); // Muestra el botón de tomar
     };
 
     const showView = (viewName) => {
@@ -51,18 +55,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     takePhotoBtn.addEventListener('click', () => photoInput.click());
 
+    // ✅ Se actualiza la lógica para intercambiar los botones al tomar una foto
     photoInput.addEventListener('change', () => {
         const file = photoInput.files?.[0];
         if (file) {
             photoPreview.src = URL.createObjectURL(file);
             photoPreview.classList.remove('hidden');
+            takePhotoBtn.classList.add('hidden');
+            removePhotoBtn.classList.remove('hidden');
         }
+    });
+    
+    // ✅ Se añade la lógica para el botón "Quitar foto"
+    removePhotoBtn.addEventListener('click', () => {
+        photoInput.value = ""; // Esencial para poder tomar otra foto
+        photoPreview.src = "";
+        photoPreview.classList.add('hidden');
+        removePhotoBtn.classList.add('hidden');
+        takePhotoBtn.classList.remove('hidden');
     });
 
     // --- GESTIÓN DEL ENVÍO DEL FORMULARIO ---
     safetyReportForm.addEventListener('submit', (event) => {
         event.preventDefault();
-
         const submitButton = safetyReportForm.querySelector("button[type='submit']");
         submitButton.disabled = true;
         submitButton.textContent = "Enviando...";

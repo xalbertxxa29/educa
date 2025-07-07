@@ -8,15 +8,15 @@
 </head>
 <body>
 
-     <div class="container">
+    <div class="container">
         <h1>Central de Seguridad 🛡️</h1>
 
-        <div id="mainMenu">
+        <div id="mainMenu" class="view">
             <button id="showReportFormBtn" class="action-button">🚨 Reportar Actos o Condiciones Inseguras</button>
             <button id="showCallOptionsBtn" class="action-button">📞 Llamar a Seguridad</button>
         </div>
 
-        <div id="reportForm" class="hidden">
+        <div id="reportForm" class="view hidden">
             <h2>Nuevo Reporte</h2>
             <form id="safetyReportForm">
                 <label for="fullName">Nombre y Apellidos:</label>
@@ -36,6 +36,8 @@
                 <input type="file" id="photoInput" accept="image/*" capture="environment" class="hidden">
 
                 <button type="button" id="takePhotoBtn" class="action-button photo-button">📸 Tomar foto de evidencia</button>
+                
+                <button type="button" id="removePhotoBtn" class="action-button remove-button hidden">🗑️ Quitar foto</button>
 
                 <img id="photoPreview" class="photo-preview hidden" alt="Vista previa de la evidencia">
 
@@ -44,7 +46,7 @@
             <button class="action-button back-button">Volver al Menú</button>
         </div>
 
-        <div id="callOptions" class="hidden">
+        <div id="callOptions" class="view hidden">
             <h2>Llamar a Seguridad</h2>
             <p>Selecciona un número para llamar inmediatamente.</p>
             <a href="tel:+5155555555" class="call-button">Opción 1: Central (+51 555-555-555)</a>
@@ -53,13 +55,13 @@
         </div>
     </div>
 
-    <div id="loadingOverlay" class="hidden">
+    <div id="loadingOverlay">
         <div class="loading-spinner"></div>
     </div>
 
-    <div id="successMessage" class="hidden">
-        Reporte enviado con éxito. ¡Gracias por tu colaboración!
-        <button id="closeSuccess" onclick="document.getElementById('successMessage').classList.remove('show')">Aceptar</button>
+    <div id="successMessage">
+        Reporte enviado con éxito. ¡Gracias por su colaboración!
+        <button id="closeSuccess">Aceptar</button>
     </div>
 
     <script src="script.js"></script>
